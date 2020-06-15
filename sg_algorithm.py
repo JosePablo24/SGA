@@ -35,60 +35,13 @@ def definir_DA(Init_Population1):    ## esta funcion crea genes aleatorios para 
     for item in range(DNA_size):
         val_X += pow(2,item)        
     val_X += 1    
-    Dx_a = abs((B-A)/(val_X))
-    
-    #generateIndividues(val_X, Dx_a)
+    Dx_a = abs((B-A)/(val_X))    
 
     for datas in range(len(Init_Population1)):            
         dato = random.uniform(A, B)
         Init_Population1[datas].append(round(dato,DNA_size))
     
     return Init_Population1, Dx_a, val_X
-
-def generateIndividues(val_X, Dx_a):
-    aux = [[] for i in range(val_X)]
-    phenaux =[]
-    for item in range(val_X):
-        aux[item].append(round(A + Dx_a * item,DNA_size))        
-    
-    print(aux)
-    for item in range(len(aux)):
-        #pru.append(A + (geno[item] * Dx))
-        #phenotype_dec.append(round(A + (geno_dec[item] * Dx), 6))        
-        phen = A + (aux[item][0] * Dx_a)
-        phenaux.append(round(phen,DNA_size))
-    print(phenaux)
-    (fit) = Fitness(phenaux, 2)
-    size = len(aux) - General_population
-    print("datos →",fit.sort()," ← fin")
-    juas = []
-    other = []
-    other1 = fit[General_population: len(fit)]
-    for item in range(len(phenaux)):
-        if item + 1 <= General_population:
-            juas.append(fit[item])
-        else:
-            other.append(fit[item])
-            
-    helper = []        
-    print("Datos a eliminar → ", other, " Cantidad de datos → ", size)
-    print("datos a conservar → ", juas, " ← fin")
-    for item in range(len(other)):
-        for items in range(len(fit)):
-            if other[item] == fit[items]:
-                helper.append(items)
-    #print(len(helper))
-    #print(set(helper))
-    last_one = []
-    for data in set(helper):
-        last_one.append(aux[data])            
-    #print(last_one)
-    for data in range(len(last_one)):                    
-        if len(aux) >= Population_size + 1:
-            #print("Se va a sacar → ", last_one[data], " Posicion del dato → ", data)
-            aux.remove(last_one[data])
-    print("         ---------------------------------------------------------------------------")
-    print(aux)
 
 def def_Genotype():
     genotype = []
